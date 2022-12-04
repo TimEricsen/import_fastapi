@@ -1,0 +1,14 @@
+# Файл для подключения базы данных
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# Создание соединения базы данных с sqlalchemy
+engine = create_engine(
+    'sqlite:///../import.db',
+    connect_args={"check_same_thread": False}
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Создание декларативной базы, которая сопоставляет созданные классы таблицам.
+Base = declarative_base()
